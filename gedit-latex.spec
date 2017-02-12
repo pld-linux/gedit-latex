@@ -1,12 +1,12 @@
 Summary:	GEdit plugin providing features to ease the edition of LaTeX documents
 Summary(pl.UTF-8):	Wtyczka GEdita udostępniająca funkcje ułatwiające edycję dokumentów w LaTeXu
 Name:		gedit-latex
-Version:	3.8.0
+Version:	3.20.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Editors
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gedit-latex/3.8/%{name}-%{version}.tar.xz
-# Source0-md5:	828cb83bb36f12b9aaade82fdca94e09
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gedit-latex/3.20/%{name}-%{version}.tar.xz
+# Source0-md5:	901b636ff9c986e96ff3c5c2a31b0417
 URL:		https://git.gnome.org/browse/gedit-latex/
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
@@ -21,6 +21,7 @@ BuildRequires:	rpm-pythonprov
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 Requires:	gedit >= 3.8
+Requires:	glib2 >= 1:2.26.0
 Requires:	python3-dbus
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
