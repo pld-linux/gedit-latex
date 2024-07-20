@@ -1,27 +1,29 @@
 Summary:	GEdit plugin providing features to ease the edition of LaTeX documents
 Summary(pl.UTF-8):	Wtyczka GEdita udostępniająca funkcje ułatwiające edycję dokumentów w LaTeXu
 Name:		gedit-latex
-Version:	3.20.0
+Version:	46.2.2
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Editors
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gedit-latex/3.20/%{name}-%{version}.tar.xz
-# Source0-md5:	901b636ff9c986e96ff3c5c2a31b0417
+Source0:	https://download.gnome.org/sources/gedit-latex/46/%{name}-%{version}.tar.xz
+# Source0-md5:	bfb3bc1d81b89eaa19678a8c549ab833
 URL:		https://git.gnome.org/browse/gedit-latex/
-BuildRequires:	autoconf >= 2.63
-BuildRequires:	automake >= 1:1.11
+BuildRequires:	appstream-glib
 BuildRequires:	gettext-tools >= 0.17
+BuildRequires:	gedit-devel >= 3.30
 BuildRequires:	glib2-devel >= 1:2.26.0
-BuildRequires:	gtk+3-devel >= 3.0.0
-BuildRequires:	intltool >= 0.40.0
-BuildRequires:	libtool >= 2:2.2
+BuildRequires:	libpeas-devel >= 1.14.1
+BuildRequires:	meson >= 0.50
+BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	python3 >= 1:3.2
 BuildRequires:	rpm-pythonprov
+BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
-Requires:	gedit >= 3.8
+Requires:	gedit >= 3.30
 Requires:	glib2 >= 1:2.26.0
+Requires:	libpeas >= 1.14.1
 Requires:	python3-dbus
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -37,16 +39,14 @@ LaTeXu.
 %setup -q
 
 %build
-%configure \
-	PYTHON=%{__python3} \
-	--disable-silent-rules
-%{__make}
+%meson build
+
+%ninja_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+%ninja_install -C build
 
 %find_lang gedit-latex
 
@@ -55,7 +55,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f gedit-latex.lang
 %defattr(644,root,root,755)
-%doc AUTHORS NEWS README
+%doc AUTHORS MAINTAINERS NEWS README
 %{_libdir}/gedit/plugins/latex.plugin
 %attr(755,root,root) %{_libdir}/gedit/plugins/latex
 %{_datadir}/gedit/plugins/latex
