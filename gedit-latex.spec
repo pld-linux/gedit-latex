@@ -2,7 +2,7 @@ Summary:	GEdit plugin providing features to ease the edition of LaTeX documents
 Summary(pl.UTF-8):	Wtyczka GEdita udostępniająca funkcje ułatwiające edycję dokumentów w LaTeXu
 Name:		gedit-latex
 Version:	46.2.2
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications/Editors
 Source0:	https://download.gnome.org/sources/gedit-latex/46/%{name}-%{version}.tar.xz
@@ -26,6 +26,9 @@ Requires:	glib2 >= 1:2.26.0
 Requires:	libpeas >= 1.14.1
 Requires:	python3-dbus
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+# just python inside, but plugin path is arch-dependent
+%define		_enable_debug_packages	0
 
 %description
 GEdit plugin providing features to ease the edition of LaTeX
@@ -57,6 +60,13 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS MAINTAINERS NEWS README
 %{_libdir}/gedit/plugins/latex.plugin
-%attr(755,root,root) %{_libdir}/gedit/plugins/latex
+%dir %{_libdir}/gedit/plugins/latex
+%{_libdir}/gedit/plugins/latex/*.py
+%{_libdir}/gedit/plugins/latex/bibtex
+%{_libdir}/gedit/plugins/latex/latex
+%{_libdir}/gedit/plugins/latex/preferences
+%{_libdir}/gedit/plugins/latex/tools
+%dir %{_libdir}/gedit/plugins/latex/util
+%attr(755,root,root) %{_libdir}/gedit/plugins/latex/util/eps2png.pl
 %{_datadir}/gedit/plugins/latex
 %{_datadir}/glib-2.0/schemas/org.gnome.gedit.plugins.latex.gschema.xml
