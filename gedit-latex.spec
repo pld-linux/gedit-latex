@@ -2,7 +2,7 @@ Summary:	GEdit plugin providing features to ease the edition of LaTeX documents
 Summary(pl.UTF-8):	Wtyczka GEdita udostępniająca funkcje ułatwiające edycję dokumentów w LaTeXu
 Name:		gedit-latex
 Version:	46.2.2
-Release:	2
+Release:	3
 License:	GPL v2+
 Group:		X11/Applications/Editors
 Source0:	https://download.gnome.org/sources/gedit-latex/46/%{name}-%{version}.tar.xz
@@ -10,7 +10,7 @@ Source0:	https://download.gnome.org/sources/gedit-latex/46/%{name}-%{version}.ta
 URL:		https://git.gnome.org/browse/gedit-latex/
 BuildRequires:	appstream-glib
 BuildRequires:	gettext-tools >= 0.17
-BuildRequires:	gedit-devel >= 3.30
+BuildRequires:	gedit-devel >= 46
 BuildRequires:	glib2-devel >= 1:2.26.0
 BuildRequires:	libpeas-devel >= 1.14.1
 BuildRequires:	meson >= 0.50
@@ -21,7 +21,7 @@ BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
-Requires:	gedit >= 3.30
+Requires:	gedit >= 46
 Requires:	glib2 >= 1:2.26.0
 Requires:	libpeas >= 1.14.1
 Requires:	python3-dbus
